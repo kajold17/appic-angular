@@ -16,9 +16,10 @@ export class TableComponent implements OnInit {
   public sortingOrder: number = 0;
   public selectedAgeRange: string = '';
   public searchTerm: string = '';
+  private searchPipe = new SearchPipe();
 
   constructor() { }
-
+  
   ngOnInit(): void {
     this.filteredEmployeeData = this.employeeData;
     this.getDataInsights(this.filteredEmployeeData);
@@ -28,6 +29,7 @@ export class TableComponent implements OnInit {
    * Sorts Employee data based on employee_salary
    * @param sortOrder Order of sorting asc, des etc
    */
+
   public sortEmployeeData(sortOrder: number) {
     this.sortingOrder = sortOrder;
     // Changing sorting direction everytime
@@ -35,10 +37,10 @@ export class TableComponent implements OnInit {
       // No sorting
       this.filteredEmployeeData = this.filteredEmployeeData.sort((employeeOne, employeeTwo) => employeeOne.id - employeeTwo.id)
     } else if(sortOrder == 1) {
-      // Descending sort
+      // Ascending sort
       this.filteredEmployeeData = this.filteredEmployeeData.sort((employeeOne, employeeTwo) => employeeOne.employee_salary - employeeTwo.employee_salary)
     } else {
-      // Ascending sort
+      // Descending sort
       this.filteredEmployeeData = this.filteredEmployeeData.sort((employeeOne, employeeTwo) => employeeTwo.employee_salary - employeeOne.employee_salary)
     }
   }
@@ -81,9 +83,9 @@ export class TableComponent implements OnInit {
   /**
    * Searches and employee from the masterlist
    */
+  
   public searchEmployee() {
-    const searchPipe = new SearchPipe();
     this.selectedAgeRange = '';
-    this.filteredEmployeeData = searchPipe.transform(this.searchTerm, this.employeeData);
+    this.filteredEmployeeData = this.searchPipe.transform(this.searchTerm, this.employeeData);
   }
 }

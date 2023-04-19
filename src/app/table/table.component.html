@@ -34,7 +34,7 @@
           </thead>
           <tbody>
             <tr *ngFor="let employee of this.filteredEmployeeData">
-              <td *ngFor="let header of this.tableHeaders">{{employee[header]}}</td>
+              <td *ngFor="let header of this.tableHeaders">{{employee[header]?employee[header]:""}}</td>
             </tr>
           </tbody>
         </table>
