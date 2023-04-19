@@ -1,0 +1,6 @@
+<app-table *ngIf="this.employeeData.length > 0;else noData" [employeeData]="this.employeeData" ></app-table>
+<ng-template #noData>
+  <h1>No Data found</h1>
+</ng-template>
+
+<router-outlet></router-outlet>

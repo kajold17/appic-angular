@@ -1,0 +1,14 @@
+.custom-table-responsive{
+    background-color: #fff;
+    width: 100%;
+    overflow-x: auto;
+}
+table{
+    th{
+        border-bottom: 3px solid #eee;
+        padding: 20px 16px;
+    }
+    td{
+        padding: 8px 16px;
+    }
+}

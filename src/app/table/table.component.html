@@ -1,0 +1,45 @@
+
+<div class="container my-3">
+  <div class="row mx-0 pt-4">
+    <div class="col-auto">
+      <div>
+        <label class="mr-2">Age Drop down</label>
+        <select (change)="this.filterByAge()" [(ngModel)]="this.selectedAgeRange">
+          <option value="">Select option</option>
+          <option *ngFor="let ageOption of this.ageDropdown" [value]="ageOption">{{ageOption}}</option>
+        </select>
+      </div>
+    </div>
+    <div class="col-auto">
+      <div>
+        <label class="mx-2">Sorting options</label>
+        <button *ngIf="this.sortingOrder !== 0" (click)="this.sortEmployeeData(0)" class="mx-1">Reset</button>
+        <button *ngIf="this.sortingOrder !== 1" (click)="this.sortEmployeeData(1)" class="mx-1">↑</button>
+        <button *ngIf="this.sortingOrder !== 2" (click)="this.sortEmployeeData(2)" class="mx-1">↓</button>
+      </div>
+    </div>
+    <div class="col d-flex justify-content-end align-items-center">
+      <!-- <div> -->
+        <label class="mx-2">Search</label>
+        <input (change)="searchEmployee()" [(ngModel)]="this.searchTerm" type="text">
+      <!-- </div> -->
+    </div>
+  </div><!-- row -->
+  <div class="row mx-0 my-4">
+    <div class="col-12">
+      <div class="custom-table-responsive">
+        <table class="w-100">
+          <thead>
+            <th *ngFor="let header of this.tableHeaders">{{header | titlecase}}</th>
+          </thead>
+          <tbody>
+            <tr *ngFor="let employee of this.filteredEmployeeData">
+              <td *ngFor="let header of this.tableHeaders">{{employee[header]}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+</div>
